@@ -1,0 +1,39 @@
+syntax = "proto3";
+package flight;
+
+message Flight {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message GetFlightRequest {
+  string id = 1;
+}
+
+message GetFlightResponse {
+  Flight flight = 1;
+}
+
+message SearchFlightsRequest {
+  string query = 1;
+}
+
+message SearchFlightsResponse {
+  repeated Flight flights = 1;
+}
+
+message CreateFlightRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message CreateFlightResponse {
+  Flight flight = 1;
+}
+
+service FlightService {
+  rpc CreateFlight (CreateFlightRequest) returns (CreateFlightResponse);
+  rpc GetFlight(GetFlightRequest) returns (GetFlightResponse);
+  rpc SearchFlights(SearchFlightsRequest) returns (SearchFlightsResponse);
+}
